@@ -2,6 +2,8 @@ CC = gcc
 CFLAGS = -Wall -Wextra -std=c11 -pedantic -g
 LDFLAGS = -lm
 
+CFLAGS = -Wall -Wextra -std=c11 -pedantic -g -D_XOPEN_SOURCE=700
+
 TARGET = chamados_ti
 SOURCES = main.c arvore.c pilha.c persistencia.c utils.c
 OBJECTS = $(SOURCES:.c=.o)
