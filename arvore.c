@@ -116,7 +116,18 @@ int arvore_proximo_id(NoArvore *no) {
         if (id_dir > max_id) max_id = id_dir;
     }
 
-    return max_id + 1;
+    static int _max_id(NoArvore *no) {
+    if (no == NULL) return 0;
+    int esq = _max_id(no->esquerda);
+    int dir = _max_id(no->direita);
+    int local = no->chamado.id;
+    if (esq > local) local = esq;
+    if (dir > local) local = dir;
+    return local;
+}
+
+int arvore_proximo_id(NoArvore *no) {
+    return _max_id(no) + 1;
 }
 
 /* Destruir a árvore (liberar memória) */
