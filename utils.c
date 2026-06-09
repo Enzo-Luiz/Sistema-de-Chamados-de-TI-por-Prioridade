@@ -4,7 +4,7 @@
 #include <ctype.h>
 #include <time.h>
 
-/* Converter prioridade para string */
+
 const char* prioridade_para_string(Prioridade p) {
     switch (p) {
         case PRIORIDADE_BAIXA:
@@ -20,7 +20,7 @@ const char* prioridade_para_string(Prioridade p) {
     }
 }
 
-/* Converter string para prioridade */
+
 Prioridade string_para_prioridade(const char *str) {
     if (str == NULL) return PRIORIDADE_BAIXA;
 
@@ -46,13 +46,13 @@ Prioridade string_para_prioridade(const char *str) {
     return PRIORIDADE_BAIXA;
 }
 
-/* Limpar buffer de entrada */
+
 void limpar_buffer(void) {
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
 }
 
-/* Exibir um chamado formatado */
+
 void exibir_chamado(Chamado *chamado) {
     if (chamado == NULL) return;
 
