@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 
-/* Criar uma nova árvore vazia */
+
 Arvore* arvore_criar(void) {
     Arvore *arvore = (Arvore *)malloc(sizeof(Arvore));
     if (arvore == NULL) {
@@ -15,7 +15,7 @@ Arvore* arvore_criar(void) {
     return arvore;
 }
 
-/* Criar um novo nó da árvore */
+
 static NoArvore* no_criar(Chamado chamado) {
     NoArvore *no = (NoArvore *)malloc(sizeof(NoArvore));
     if (no == NULL) {
@@ -28,13 +28,13 @@ static NoArvore* no_criar(Chamado chamado) {
     return no;
 }
 
-/* Inserir um chamado na árvore (BST ordenada por prioridade, depois por ID) */
+
 static NoArvore* _inserir_recursivo(NoArvore *no, Chamado chamado) {
     if (no == NULL) {
         return no_criar(chamado);
     }
 
-    /* Comparação: prioridade maior vai para direita (raiz tem maior prioridade) */
+    
     if (chamado.prioridade > no->chamado.prioridade ||
         (chamado.prioridade == no->chamado.prioridade && chamado.id > no->chamado.id)) {
         no->direita = _inserir_recursivo(no->direita, chamado);
@@ -66,12 +66,11 @@ Chamado* arvore_buscar_max(NoArvore *no) {
     return &(atual->chamado);
 }
 
-/* Remover o nó com maior prioridade */
 static NoArvore* _remover_max_recursivo(NoArvore *no, Chamado *chamado_removido) {
     if (no == NULL) return NULL;
 
     if (no->direita == NULL) {
-        /* Este é o nó de máxima prioridade */
+        
         *chamado_removido = no->chamado;
         NoArvore *esquerda = no->esquerda;
         free(no);
@@ -90,17 +89,17 @@ void arvore_remover_max(Arvore *arvore) {
     arvore->quantidade--;
 }
 
-/* Listar chamados em ordem de prioridade (in-order da BST) */
+
 void arvore_listar_inorder(NoArvore *no) {
     if (no == NULL) return;
 
-    /* Percurso reverso para mostrar maior prioridade primeiro */
+    
     arvore_listar_inorder(no->direita);
     exibir_chamado(&(no->chamado));
     arvore_listar_inorder(no->esquerda);
 }
 
-/* Encontrar o próximo ID disponível */
+
 int arvore_proximo_id(NoArvore *no) {
     if (no == NULL) return 1;
 
