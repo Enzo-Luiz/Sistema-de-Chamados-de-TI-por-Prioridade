@@ -31,7 +31,7 @@ void carregar_chamados(Arvore *arvore) {
 
         if (strlen(linha) == 0) continue;
 
-        /* Parse da linha CSV */
+        
         Chamado chamado;
         char prioridade_str[20];
         char data_str[30];
