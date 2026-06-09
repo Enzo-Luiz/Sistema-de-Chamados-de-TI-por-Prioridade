@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-/* Criar uma nova pilha vazia */
+
 Pilha* pilha_criar(void) {
     Pilha *pilha = (Pilha *)malloc(sizeof(Pilha));
     if (pilha == NULL) {
@@ -14,7 +14,7 @@ Pilha* pilha_criar(void) {
     return pilha;
 }
 
-/* Adicionar um elemento no topo da pilha */
+
 void pilha_push(Pilha *pilha, Chamado chamado) {
     if (pilha == NULL) return;
 
@@ -30,7 +30,7 @@ void pilha_push(Pilha *pilha, Chamado chamado) {
     pilha->quantidade++;
 }
 
-/* Remover e retornar o elemento do topo da pilha */
+
 Chamado* pilha_pop(Pilha *pilha) {
     if (pilha == NULL || pilha->topo == NULL) return NULL;
 
@@ -49,19 +49,19 @@ Chamado* pilha_pop(Pilha *pilha) {
     return chamado;
 }
 
-/* Consultar o elemento do topo sem remover */
+
 Chamado* pilha_peek(Pilha *pilha) {
     if (pilha == NULL || pilha->topo == NULL) return NULL;
     return &(pilha->topo->chamado);
 }
 
-/* Verificar se a pilha está vazia */
+
 int pilha_vazia(Pilha *pilha) {
     if (pilha == NULL) return 1;
     return pilha->topo == NULL;
 }
 
-/* Destruir a pilha (liberar memória) */
+
 void pilha_destruir(Pilha *pilha) {
     if (pilha == NULL) return;
 
