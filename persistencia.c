@@ -41,10 +41,7 @@ void carregar_chamados(Arvore *arvore) {
                    chamado.descricao,
                    prioridade_str,
                    data_str);",
-                           &chamado.id,
-                           chamado.descricao,
-                           prioridade_str,
-                           data_str);
+                        
 
         if (campos != 4) {
             fprintf(stderr, "Erro ao parsear linha: %s\n", linha);
