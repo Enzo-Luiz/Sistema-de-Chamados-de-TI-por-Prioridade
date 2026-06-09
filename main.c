@@ -4,7 +4,7 @@
 #include <string.h>
 #include <time.h>
 
-/* Protótipos de funções do menu */
+
 static void exibir_menu(void);
 static void adicionar_chamado(Arvore *arvore);
 static void listar_chamados(Arvore *arvore);
@@ -20,7 +20,7 @@ int main(void) {
         return 1;
     }
 
-    /* Carregar dados persistidos */
+    
     carregar_chamados(arvore);
 
     int opcao = 0;
@@ -65,7 +65,7 @@ int main(void) {
         }
     }
 
-    /* Liberar memória */
+   
     arvore_destruir(arvore->raiz);
     free(arvore);
     pilha_destruir(historico);
@@ -73,7 +73,7 @@ int main(void) {
     return 0;
 }
 
-/* Exibir menu principal */
+
 static void exibir_menu(void) {
     printf("\n");
     printf("╔════════════════════════════════════════╗\n");
@@ -87,7 +87,7 @@ static void exibir_menu(void) {
     printf("Escolha: ");
 }
 
-/* Adicionar um novo chamado */
+
 static void adicionar_chamado(Arvore *arvore) {
     if (arvore == NULL) return;
 
@@ -102,7 +102,7 @@ static void adicionar_chamado(Arvore *arvore) {
         fprintf(stderr, "Erro ao ler descrição\n");
         return;
     }
-    /* Remover newline */
+    
     novo.descricao[strcspn(novo.descricao, "\n")] = 0;
 
     if (strlen(novo.descricao) == 0) {
@@ -136,7 +136,7 @@ static void adicionar_chamado(Arvore *arvore) {
     printf("\n✓ Chamado #%d adicionado com sucesso!\n", novo.id);
 }
 
-/* Listar todos os chamados ordenados por prioridade */
+
 static void listar_chamados(Arvore *arvore) {
     if (arvore == NULL) return;
 
@@ -151,7 +151,7 @@ static void listar_chamados(Arvore *arvore) {
     arvore_listar_inorder(arvore->raiz);
 }
 
-/* Resolver o chamado de maior prioridade */
+
 static void resolver_chamado(Arvore *arvore, Pilha *historico) {
     if (arvore == NULL || historico == NULL) return;
 
@@ -172,16 +172,16 @@ static void resolver_chamado(Arvore *arvore, Pilha *historico) {
            prioridade_para_string(chamado_max->prioridade));
     printf("Descrição: %s\n", chamado_max->descricao);
 
-    /* Adicionar ao histórico antes de remover */
+    
     pilha_push(historico, *chamado_max);
 
-    /* Remover da árvore */
+    
     arvore_remover_max(arvore);
 
     printf("\n✓ Chamado resolvido e movido para histórico.\n");
 }
 
-/* Desfazer a última resolução */
+
 static void desfazer_resolucao(Arvore *arvore, Pilha *historico) {
     if (arvore == NULL || historico == NULL) return;
 
@@ -199,7 +199,7 @@ static void desfazer_resolucao(Arvore *arvore, Pilha *historico) {
     printf("\n=== Desfazendo Resolução ===\n");
     printf("Chamado #%d reaberto.\n", chamado->id);
 
-    /* Reinsert na árvore */
+    
     arvore_inserir(arvore, *chamado);
 
     free(chamado);
