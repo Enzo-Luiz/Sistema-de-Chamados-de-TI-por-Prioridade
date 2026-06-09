@@ -36,7 +36,11 @@ void carregar_chamados(Arvore *arvore) {
         char prioridade_str[20];
         char data_str[30];
         
-        int campos = sscanf(linha, "%d,%255[^,],%19[^,],%29s",
+        int campos = sscanf(linha, "%d,%255[^,],%19[^,],%29[^\n]",
+                   &chamado.id,
+                   chamado.descricao,
+                   prioridade_str,
+                   data_str);",
                            &chamado.id,
                            chamado.descricao,
                            prioridade_str,
